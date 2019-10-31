@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int fact(int x){
+ int f=0;
+ if(x<=1){return 1;}
+ return f=fact(x-1)*x;
+}
+double f(int k,double x){
+    return pow(-x,k)/fact(2*k);
+}
+double prov(double x){
+    return cos(sqrt(x));
+}
+double fp(int k,double x){
+    return pow(-x,k)/(2*x);
+}
+double provp(double x){
+    return -(sin(sqrt(x))/(2*sqrt(x)));
+}
+int main(){
+    double b=1.7,h=0.1,e=0.001;
+    for( double i=0; i<=b; i+=h){
+        int k=0;
+        cout<<"x="<<i<<" ";
+        double y=0;
+        while( fabs( f(k,i) ) > e){
+            y += f(k,i);
+            ++k;
+        }
+    cout<<"y="<<y<<" ";
+    cout<<"proverka : "<< prov(i)<<endl;
+    }
+    cout<< "производная" << endl;
+    for( double i=0; i<=b; i+=h){
+        int k=0;
+        cout<<"x="<<i<<" ";
+        double y=0;
+        while( fabs( fp(k,i) ) > e){
+            y += fp(k,i);
+            ++k;
+        }
+    cout<<"y="<<y<<" ";
+    cout<<"proverka : "<< provp(i)<<endl;
+    }
+return 0;
+}
