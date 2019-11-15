@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
+
 using namespace std;
+
 int fact(int x){
  int f=0;
  if(x<=1){return 1;}
@@ -13,16 +15,16 @@ double prov(double x){
     return cos(sqrt(x));
 }
 double fp(int k,double x){
-    return pow(-x,k)/(2*x);
+    return -k*pow(x, k-1)/fact(2*k);
 }
 double provp(double x){
     return -(sin(sqrt(x))/(2*sqrt(x)));
 }
 int main(){
-    double b=1.7,h=0.1,e=0.001;
+   double b=1.7,h=0.1,e=0.001;
     for( double i=0; i<=b; i+=h){
         int k=0;
-        cout<<"x="<<i<<" ";
+        cout<<"x ="<<i<<" ";
         double y=0;
         while( fabs( f(k,i) ) > e){
             y += f(k,i);
@@ -31,69 +33,20 @@ int main(){
     cout<<"y="<<y<<" ";
     cout<<"proverka : "<< prov(i)<<endl;
     }
-    cout<< "производная" << endl;
-    for( double i=0; i<=b; i+=h){
-        int k=0;
-        cout<<"x="<<i<<" ";
-        double y=0;
-        while( fabs( fp(k,i) ) > e){
-            y += fp(k,i);
-            ++k;
-        }
-    cout<<"y="<<y<<" ";
-    cout<<"proverka : "<< provp(i)<<endl;
-    }
-return 0;
-}
+    cout<<endl<< "    proizvod" << endl << endl;
 
-#include <iostream>
-#include <cmath>
-using namespace std;
-int fact(int x){
- int f=0;
- if(x<=1){return 1;}
- return f=fact(x-1)*x;
-}
-double f(int k,double x){
-    return pow(-x,k)/fact(2*k);
-}
-double prov(double x){
-    return cos(sqrt(x));
-}
-double fp(int k,double x){
-    return (-k*pow(x, k-1)*fact(2*k))/pow(fact(2*k),k);
-}
-double provp(double x){
-    return -(sin(sqrt(x))/(2*sqrt(x)));
-}
-int main(){
-  /*  double b=1.7,h=0.1,e=0.001;
-    for( double i=0; i<=b; i+=h){
-        int k=0;
-        cout<<"x="<<i<<" ";
-        double y=0;
-        while( fabs( f(k,i) ) > e){
-            y += f(k,i);
-            ++k;
-        }
-    cout<<"y="<<y<<" ";
-    cout<<"proverka : "<< prov(i)<<endl;
-    }
-
-    cout<< "производная" << endl;
     for( double i=0.1; i<=b; i+=h){
         int k=0;
-        cout<<"x="<<i<<" ";
+        cout<<"x ="<< i <<" ";
         double y=0;
-        y += fp(k,i);
-    cout<<"y="<<y<<" ";
+        if (fabs(fp(k,i)) > e)
+        {
+            y += fp(k,i);
+        }
+        k++;
+    cout<<"proizv = "<<y<<" ";
     cout<<"proverka : "<< provp(i)<<endl;
-    } */
-    double b=1.7,h=0.1;
-    for (double i=0.1; i<=b; i+=h){
-        int k=0;
-        double s=0; s+=fp(k, i);
-        cout << "func fp : "; cout << s << endl;; k++;
     }
+
 return 0;
 }
