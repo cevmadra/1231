@@ -1,0 +1,48 @@
+import math 
+import numpy as np 
+from math import cos, sin, sqrt 
+
+
+def f1(x, k): 
+    return ((-1) ** k * x ** (2 * k + 1)) / math.factorial(2*k)  #((-1) ** k * x ** k)/math.factorial(2*k)
+def f2(x, k): 
+    return ((-1) ** k * x ** (2 * k) * (2 * k + 1)) / math.factorial(2*k)   #(-k*x**(k-1))/math.factorial(2*k)
+
+
+e = 0.001 
+a = float(input("Начало отрезка: ")) 
+x = float(input("x: ")) 
+b = float(input("Конец отрезка: ")) 
+h = float(input("Шаг: ")) 
+
+
+for x in list(np.arange(a,b+0.1,h)): 
+    if x!=0: 
+        k = 0 
+        sl = f1(x, k) 
+        s = sl 
+        while abs(sl)> e: 
+            k +=1 
+            sl = f1(x,k) 
+            pr = sl 
+            s +=sl 
+        print("Значение x", x) 
+        print("Результат: ", s) 
+        print("Проверка: ", x * cos(x) )  #cos(sqrt(x))
+        print("---------------------------")
+
+x = 1
+for x in list(np.arange(a,b+0.1,h)): 
+    if x!=0: 
+        k = 0 
+        sl = f2(x, k) 
+        s = sl 
+        while abs(sl)> e: 
+            k +=1 
+            sl = f2(x,k) 
+            pr = sl 
+            s +=sl 
+        print("Значение x =", x) 
+        print("Значение суммы: ", s) 
+        print("Проверка: ", cos(x) - x * sin(x) ) #-(sin(sqrt(x))/(2*sqrt(x)))
+        print("---------------------------")
