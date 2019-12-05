@@ -1,0 +1,44 @@
+import math 
+from math import cos,sqrt, sin 
+import numpy as np
+
+def f1(x, k): 
+    return ((-1) ** k * x ** k )/ math.factorial(2*k) 
+def f2(x, k): 
+    return (-1) ** k  * k * x ** (k-1) / math.factorial(2*k)   
+
+e = 0.001 
+a = 0 # Начало отрезка
+x = 1 
+b = 1.7 # Конец отрезка
+h = 0.1 # Шаг
+
+for x in list(np.arange(a,b+0.1,h)): 
+    if x!=0: 
+        k = 0 
+        sl = f1(x, k) 
+        s = sl 
+        while abs(sl)> e: 
+            k +=1 
+            sl = f1(x,k) 
+            pr = sl 
+            s +=sl 
+        print("х = ", x) 
+        print("S = ", s) 
+        print("Проверка = ",  cos(sqrt(x)) ) 
+        print("\n")
+print("------------ Производная ---------------")
+for x in list(np.arange(a,b+0.1,h)): 
+    if x!=0: 
+        k = 1 
+        sl = f2(x, k) 
+        s = sl 
+        while abs(sl)> e: 
+            k +=1 
+            sl = f2(x,k) 
+            pr = sl 
+            s +=sl 
+        print("x =", x) 
+        print("S = ", s) 
+        print("Проверка = ", -sin(sqrt(x))/ (2 *sqrt(x)) ) 
+        print("\n")
