@@ -1,0 +1,28 @@
+import math
+
+a, b, Num = 1, 2, 10
+x = a
+step = (b - a)/Num
+step=0.1
+func = []
+arg = []
+
+while x <= b:
+    arg.append(x)
+    func.append(x * math.log(x))
+    x += step
+    
+i, multi, lagrange, x = 0, 1, 0, a
+x+=0.05
+while x <= b:
+    for i in range(Num):
+        k = 0
+        for k in range(Num):
+            if k != i:
+                multi *= (x - arg[k])/(arg[i] - arg[k])
+        
+        lagrange += func[i] * multi
+        multi = 1
+    print ("x =", x, "f(x) =", x * math.log(x), "L(x) =", lagrange) 
+    x += step 
+    lagrange = 0
