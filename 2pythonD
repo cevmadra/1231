@@ -1,0 +1,35 @@
+import math
+from math import sin
+
+def Log(Y, X, x):
+    z=0
+    j=0
+    while j<n:
+        p1 = 1
+        p2 = p1
+        i = 0
+        while i<n:
+            if i != j:
+                p1 = p1 * (x - X[i]) 
+                p2 = p2 * (X[j] - X[i])
+            i=i+1
+        z = z + Y[j] * p1 / p2
+        j=j+1
+    return z    
+    
+
+n = 10
+h = 0.1
+x = (float(input("Значение x :")))
+a = x
+i = 0
+X = [0]*n
+Y = [0]*n
+while i < n:
+    X[i] = a
+    Y[i] = a * sin(a * a)
+    i+=1
+    a+=h
+while x < a:
+    print("Ln(x)=", Log(Y, X, x) , '\n', "проверка в точке х" , x * sin(x*x), '\n' )
+    x+=h
